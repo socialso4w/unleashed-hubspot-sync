@@ -245,6 +245,7 @@ async function workerTick() {
 
 if (!config.disableDatabase) {
   setInterval(() => {
+    logger.info('Worker interval fired');
     workerTick().catch((error) => {
       logger.error('Worker tick crashed', { error: error.message, stack: error.stack });
     });

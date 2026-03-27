@@ -23,8 +23,9 @@ app.get('/health', async (_req, res) => {
 });
 
 function parsePayloadData(payload) {
+  const rawData = payload.data || payload.Data || {};
   try {
-    return typeof payload.data === 'string' ? JSON.parse(payload.data) : (payload.data || {});
+    return typeof rawData === 'string' ? JSON.parse(rawData) : rawData;
   } catch {
     return {};
   }

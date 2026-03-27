@@ -100,13 +100,13 @@ app.post('/webhooks/unleashed', async (req, res) => {
         ON CONFLICT (event_notification_id) DO NOTHING
       `,
       [
-        payload.subscriptionId || null,
-        payload.eventNotificationId,
-        payload.eventType,
-        payload.createdOn || null,
-        salesOrderGuid,
-        payload,
-      ],
+  payload.subscriptionId || payload.SubscriptionId || null,
+  payload.eventNotificationId || payload.EventNotificationId || payload.id || payload.Id,
+  payload.eventType || payload.EventType,
+  payload.createdOn || payload.CreatedOn || null,
+  salesOrderGuid,
+  payload,
+],
     );
 
     res.status(200).json({ ok: true });

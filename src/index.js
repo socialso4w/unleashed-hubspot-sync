@@ -77,6 +77,11 @@ app.post('/webhooks/unleashed', async (req, res) => {
     }
 
     const payload = req.body;
+logger.info('Webhook received', {
+  subscriptionId: payload.subscriptionId || payload.SubscriptionId || null,
+  eventNotificationId: payload.eventNotificationId || payload.EventNotificationId || payload.id || payload.Id || null,
+  eventType: payload.eventType || payload.EventType || null,
+});
     const eventData = parsePayloadData(payload);
     const salesOrderGuid = eventData.salesOrderGuid || eventData.SalesOrderGuid || null;
 

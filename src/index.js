@@ -190,7 +190,7 @@ function isOlderThanCutoff(createdOn) {
 
 async function processEvent(eventRow) {
   const payload = eventRow.payload;
-  const eventType = payload.eventType;
+  const eventType = payload.eventType || payload.EventType;
 
   if (isOlderThanCutoff(payload.createdOn)) {
     await markIgnored(eventRow.id, `Ignored because createdOn is older than the active cutoff (${getEffectiveCutoffIso()})`);

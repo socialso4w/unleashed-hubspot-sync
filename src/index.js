@@ -50,7 +50,7 @@ async function processPayloadDirect(payload) {
   }
 
   const order = await getSalesOrderEventually(salesOrderGuid);
-  const result = await syncSalesOrder(order, payload.eventNotificationId || 'direct-test');
+  const result = await syncSalesOrder(order, payload.eventNotificationId || payload.EventNotificationId || payload.id || payload.Id || 'direct-test');
   return {
     ok: true,
     salesOrderGuid,
@@ -206,7 +206,7 @@ async function processEvent(eventRow) {
   }
 
   const order = await getSalesOrderEventually(salesOrderGuid);
-  const result = await syncSalesOrder(order, payload.eventNotificationId);
+  const result = await syncSalesOrder(order, payload.eventNotificationId || payload.EventNotificationId || payload.id || payload.Id);
 
   logger.info('Sales order synced', {
     eventNotificationId: payload.eventNotificationId,

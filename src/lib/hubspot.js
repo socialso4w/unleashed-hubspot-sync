@@ -151,6 +151,7 @@ async function upsertDeal(order, contact) {
     amount: order.Total,
     dealstage: config.hubspot.dealStage,
     pipeline: config.hubspot.dealPipeline,
+    unleashed_comments: order.Comments || undefined,
     closedate: order.OrderDateIso || undefined,
     [config.hubspot.dealExternalIdProperty]: order.OrderNumber,
     ...(config.hubspot.dealGuidProperty ? { [config.hubspot.dealGuidProperty]: order.Guid } : {}),

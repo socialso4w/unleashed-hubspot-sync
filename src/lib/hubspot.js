@@ -97,6 +97,7 @@ async function findContactByFallback(propertyName, value) {
   return searchObject('contacts', propertyName, value, ['firstname', 'lastname', 'email', 'phone']);
 }
 
+
 async function upsertContact(contact) {
   const properties = compactProperties({
   firstname: contact.firstName,
@@ -110,6 +111,7 @@ async function upsertContact(contact) {
   zip: contact.zip,
   customer_reference: contact.customerReference,
   suburb: contact.suburb,
+unleashed_comments: contact.comments || undefined,
   ...(config.hubspot.contactFallbackProperty && contact.fallbackValue
     ? { [config.hubspot.contactFallbackProperty]: contact.fallbackValue }
     : {}),
